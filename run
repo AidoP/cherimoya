@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+
+RELEASE=debug
+if [ "$0" = "release" ]; then
+    RELEASE=release
+fi
+
+mkdir -p esp/efi/boot/
+echo '\EFI\BOOT\BOOTX64.efi' > esp/startup.nsh
+
+cd bootloader
+cargo build
+cp "target/x86_64-efi/$RELEASE/cherimoya-bootloader.efi" ../esp/efi/boot/bootx64.efi
+cd ../kernel
+cargo build
+cd ../
+
+qemu-system-x86_64 -nodefaults -enable-kvm -vga std -machine q35,accel=kvm:tcg -m 128M -serial stdio -monitor vc:1024x768 \
+    -drive if=pflash,format=raw,readonly,file=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd \
+    -drive if=pflash,format=raw,file=OVMF_VARS.fd \
+    -drive format=raw,file=fat:rw:esp
