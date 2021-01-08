@@ -3,3 +3,12 @@ name = "cherimoya"
 version = "0.0.1"
 authors = ["AidoP <aidop@me.com>"]
 edition = "2018"
+
+[[bin]]
+name = "cherimoya"
+path = "src/kernel.rs"
+test = true
+doctest = true
+
+[dependencies]
+kstate = { path = "../kstate" }

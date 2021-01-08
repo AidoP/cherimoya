@@ -3,3 +3,10 @@
 [[package]]
 name = "cherimoya"
 version = "0.0.1"
+dependencies = [
+ "kstate",
+]
+
+[[package]]
+name = "kstate"
+version = "0.0.1"

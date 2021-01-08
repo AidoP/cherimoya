@@ -1,0 +1,5 @@
+[package]
+name = "kstate"
+version = "0.0.1"
+authors = ["AidoP <aidop@me.com>"]
+edition = "2018"

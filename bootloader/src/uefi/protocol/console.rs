@@ -1,4 +1,4 @@
-use super::{Event, Status};
+use crate::uefi::{event, Status};
 
 opaque! { Mode }
 
@@ -12,7 +12,7 @@ pub struct Key {
 pub struct Input {
     pub reset: extern "efiapi" fn(&mut Self, u8) -> Status,
     pub read_key: extern "efiapi" fn(&mut Self, key: *mut Key) -> Status,
-    pub wait_for_key: Event
+    pub wait_for_key: event::Event
 }
 impl Input {
     #[inline]
