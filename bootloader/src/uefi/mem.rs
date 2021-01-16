@@ -84,8 +84,8 @@ impl DerefMut for MemoryAttributes {
 
 pub struct MemoryMap {
     pub(in crate::uefi) descriptors: *mut MemoryDescriptor,
-    pub(in crate::uefi) total_size: usize,
-    pub(in crate::uefi) descriptor_size: usize,
+    pub total_size: usize,
+    pub descriptor_size: usize,
     pub(in crate::uefi) version: u32,
     pub(in crate::uefi) key: usize,
     pub(in crate::uefi) boot_services: &'static uefi::BootServices
@@ -115,9 +115,9 @@ impl<'a> Iterator for MemoryMapIter<'a> {
 
 #[repr(C)]
 pub struct MemoryDescriptor {
-    memory_type: MemoryType,
-    physcial_start: u64,
-    virtual_start: u64,
-    pages: u64,
-    attributes: MemoryAttributes
+    pub memory_type: MemoryType,
+    pub physcial_start: u64,
+    pub virtual_start: u64,
+    pub pages: u64,
+    pub attributes: MemoryAttributes
 }

@@ -2,18 +2,20 @@
 set -e
 
 RELEASE=debug
-if [ "$0" = "release" ]; then
+if [ "$1" = "release" ]; then
     RELEASE=release
+    RELEASE_FLAGS='--release'
 fi
 
 mkdir -p esp/efi/boot/
 echo '\EFI\BOOT\BOOTX64.efi' > esp/startup.nsh
 
 cd bootloader
-cargo build
+cargo build $RELEASE_FLAGS
 cp "target/x86_64-efi/$RELEASE/cherimoya-bootloader.efi" ../esp/efi/boot/bootx64.efi
 cd ../kernel
-cargo build
+cargo build $RELEASE_FLAGS
+cp "target/x86_64/$RELEASE/kernel" ../esp/kernel
 cd ../
 
 qemu-system-x86_64 -nodefaults -enable-kvm -vga std -machine q35,accel=kvm:tcg -m 128M -serial stdio -monitor vc:1024x768 \

@@ -4,9 +4,15 @@
 name = "cherimoya-bootloader"
 version = "0.0.1"
 dependencies = [
- "kstate",
+ "elf64",
+ "kalloc",
 ]
 
 [[package]]
-name = "kstate"
+name = "elf64"
+version = "0.1.0"
+source = "git+https://github.com/AidoP/elf64?branch=main#4567caf45f4f02de05a0bdd08ced8bce48ceb150"
+
+[[package]]
+name = "kalloc"
 version = "0.0.1"

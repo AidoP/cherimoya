@@ -5,4 +5,5 @@ authors = ["AidoP <aidop@me.com>"]
 edition = "2018"
 
 [dependencies]
-kstate = { path = "../kstate" }
+kalloc = { path = "../kalloc" }
+elf64 = { git = "https://github.com/AidoP/elf64", branch = "main" }

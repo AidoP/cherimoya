@@ -5,10 +5,10 @@ authors = ["AidoP <aidop@me.com>"]
 edition = "2018"
 
 [[bin]]
-name = "cherimoya"
+name = "kernel"
 path = "src/kernel.rs"
 test = true
 doctest = true
 
 [dependencies]
-kstate = { path = "../kstate" }
+kalloc = { path = "../kalloc" }

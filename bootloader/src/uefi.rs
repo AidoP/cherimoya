@@ -140,7 +140,7 @@ impl BootServices {
         }
     }
     pub fn allocate_pool<T>(&self, count: usize, memory_type: mem::MemoryType) -> Option<*mut T> {
-        let mut buffer = 0 as *mut T;
+        let buffer = 0 as *mut T;
         if (self.allocate_pool)(memory_type, core::mem::size_of::<T>() * count, &mut (buffer as _)) == Status::SUCCESS {
             Some(buffer)
         } else {
